@@ -1,0 +1,27 @@
+name: workspaces-config
+description: The shared directories a host needs before it can run workspaces
+
+interview:
+  - id: ca_certificate
+    type: multiline
+    prompt: Root CA certificate (PEM)
+    description: The public certificate that signs your internal services. Containers trust it.
+    required: true
+
+# Bind-mount sources for workspace-template's devcontainer.json. Keep this list in step with its mounts.
+directories:
+  - path: caches/browsers
+  - path: caches/cargo
+  - path: caches/gh/extensions
+  - path: caches/go-pkg
+  - path: caches/homebrew
+  - path: caches/npm/global
+  - path: caches/npm/local
+  - path: caches/pnpm
+  - path: caches/uv/packages
+  - path: caches/uv/tools
+  - path: mnemonic-vault
+
+messages:
+  after-apply: |
+    The shared workspace directories are ready. Render workspaces with workspace-template.
